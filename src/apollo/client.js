@@ -1,5 +1,6 @@
 import ApolloClient from 'apollo-boost';
-import gql from "graphql-tag";
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { persistCache } from 'apollo-cache-persist';
 
 const typeDefs = `
     type Message {
@@ -24,7 +25,15 @@ const typeDefs = `
     }
 `;
 
+const cache = new InMemoryCache();
+
+persistCache({
+    cache,
+    storage: window.localStorage,
+});
+
 const client = new ApolloClient({
+    cache,
     uri: 'https://fakerql.com/graphql',
     clientState: {
         defaults: {

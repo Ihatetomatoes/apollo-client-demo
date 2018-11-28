@@ -5,14 +5,13 @@ import 'typeface-roboto';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { ApolloProvider } from 'react-apollo';
-import client from './apollo/client';
+import ApolloProviderWrapper from './apollo/ApolloProviderWrapper';
 
 ReactDOM.render(
     <BrowserRouter>
-        <ApolloProvider client={client}>
+        <ApolloProviderWrapper>
             <App />
-        </ApolloProvider>
+        </ApolloProviderWrapper>
     </BrowserRouter>
 , document.getElementById('root'));
 

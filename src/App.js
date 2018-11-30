@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import {Home, Users, Products, Posts} from './components';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -161,7 +161,8 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/users" component={Users} />
-            <Route path="/products" component={Products} />
+            <Route exact path="/products" render={() => <Redirect to="/products/video" />} />
+            <Route path="/products/:categoryId" component={Products} />
             <Route path="/posts" component={Posts} />
           </Switch>
         </main>
